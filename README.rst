@@ -29,8 +29,7 @@ running):
 -  `Arch <https://www.archlinux.org/packages/community/i686/at/>`__
 -  `CentOs 7 <http://mirror.centos.org/centos/7/os/x86_64/Packages/>`__
 
-For now there is no official installer so drop shup in your *~/bin* or
-any other folder in your *$PATH* you like.
+You can install shup using ``pip3 install shup``.
 
 How to use it?
 ==============
