@@ -1,12 +1,12 @@
 import getpass
 from os import path
-from os.path import expanduser
+from os.path import expanduser, dirname
 from configparser import ConfigParser
 
 
 cfg_name = "shup.cfg"
 cfg_paths = [
-        path.join('/etc/shup', cfg_name),
+        path.join(dirname(path.realpath(__file__)), cfg_name),
         path.join(expanduser('~/.config/shup'), cfg_name),
         ]
 
