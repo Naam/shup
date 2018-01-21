@@ -1,2 +1,2 @@
 paramiko>=1.16.0
-progressbar2>=3.12
+progressbar2>=3.34.3

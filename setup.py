@@ -19,7 +19,7 @@ setup(name='shup',
 
       python_requires='>=3',
       provides=['shup'],
-      install_requires=["paramiko>=1.16.0", "progressbar2>=3.12"],
+      install_requires=["paramiko>=1.16.0", "progressbar2>=3.34.3"],
       packages=find_packages(),
       package_data={
          'shup': ['shup.cfg'],
