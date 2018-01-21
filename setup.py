@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 import shup
 
@@ -17,19 +17,35 @@ setup(name='shup',
       long_description=open("README.rst").read(),
       keywords="upload sharing share file tool upload snippet code image",
 
-      packages=['shup'],
+      python_requires='>=3',
       provides=['shup'],
       install_requires=["paramiko>=1.16.0", "progressbar2>=3.12"],
-      scripts=["shup/shup"],
+      packages=find_packages(),
+      package_data={
+         'shup': ['shup.cfg'],
+         },
+
+      entry_points={
+         'console_scripts': [
+            'shup = shup.shup:main',
+            ],
+         },
 
       classifiers=['Development Status :: 4 - Beta',
-                   'Intended Audience :: System Administrators',
-                   'Intended Audience :: Information Technology',
-                   'Natural Language :: English',
-                   'Operating System :: OS Independent',
-                   'Programming Language :: Python :: 3',
-                   'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-                   'Topic :: System :: Archiving',
-                   'Topic :: Communications :: File Sharing',
-                   ],
+         'Intended Audience :: System Administrators',
+         'Intended Audience :: Information Technology',
+         'Natural Language :: English',
+         'Operating System :: OS Independent',
+         'Programming Language :: Python :: 3',
+         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+         'Topic :: System :: Archiving',
+         'Topic :: Communications :: File Sharing',
+         'Programming Language :: Python :: 3',
+         'Programming Language :: Python :: 3.2',
+         'Programming Language :: Python :: 3.3',
+         'Programming Language :: Python :: 3.4',
+         'Programming Language :: Python :: 3.5',
+         'Programming Language :: Python :: 3.6',
+         'Programming Language :: Python :: 3.7',
+         ],
       )
