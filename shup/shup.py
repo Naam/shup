@@ -67,6 +67,12 @@ def get_args() -> argparse.Namespace:
 
 def get_ssh_client(cfg: Config) -> SSHClient:
     '''Return a connected SSHClient'''
+    needed_keys = ['ssh_host', 'file_path', 'ssh_port', 'ssh_user']
+    miss_keys = [i for i in needed_keys if not cfg.exists(i)]
+    if len(miss_keys):
+        die(1, "get_ssh_client: missing keys %s in rule '%s'" % (miss_keys,
+            cfg.rule))
+
     s = SSHClient()
     s.load_system_host_keys()
     s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
