@@ -14,8 +14,8 @@ setup(name='shup',
 
       url='https://github.com/Naam/shup',
       description='File sharing (images, code snippets, movies...) made easy.',
-      long_description=open("README.md").read(),
-      keywords="file-upload file-sharing share file tool upload snippet",
+      long_description=open("README.rst").read(),
+      keywords="upload sharing share file tool upload snippet code image",
 
       packages=['shup'],
       provides=['shup'],
