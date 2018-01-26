@@ -10,7 +10,7 @@ http://files.example.com/surprise.png just by running:
 
 ``shup mywebsite ~/Pictures/surprise.png``
 
-*mywebsite* is a rule, we’ll see that later.
+*mywebsite* is a rule tag, we’ll see that later.
 
 .. figure:: https://files.naam.me/shup/screencast.gif
    :alt: Demo
@@ -20,16 +20,16 @@ http://files.example.com/surprise.png just by running:
 Install
 =======
 
-To install the few needed dependencies run a variant of:
-``python pip install --user -r requirements.txt`` on your local machine.
+You can install shup using pypi like so: ``pip3 install shup``.
+
 Also be sure to have ``at`` command on your remote machines (and the atd
 running):
-
 -  `Debian <https://packages.qa.debian.org/a/at.html>`__
 -  `Arch <https://www.archlinux.org/packages/community/i686/at/>`__
 -  `CentOs 7 <http://mirror.centos.org/centos/7/os/x86_64/Packages/>`__
 
-You can install shup using ``pip3 install shup``.
+It's used to delay the remove command, otherwise your files wont be deleted
+later.
 
 How to use it?
 ==============
@@ -45,8 +45,9 @@ have the same session name on your remote machine as your local machine,
 no need to specify it. Let’s say you also want that every file expire
 one week after creation by default on that directory. Since we dont
 share critical info here no need to use anything else than simple ``rm``
-command for deletion. Here is the configuration you would write for this
-situation:
+command for deletion. Also in this example you're using a key protected with a
+password that you don't want to save in your configuration file. Here is the
+configuration you would write in that situation:
 
 ::
 
@@ -61,12 +62,14 @@ Now we can start uploading file as simply as:
 the configuration files we can also overwrite the TTL of the file and
 the way it’s deleted for example:
 ``shup -t 2h -d 'shred -n 200 -z -u' -u example_static sensible_file.tar.bz2``
+If you only have one rule and what it to be your default one just use the rule
+tag ``[default]``. The first command can now be run ``shup look_at_this.webm``.
 
 Configuration files
 -------------------
 
 shup will automatically try to read configurations files (*shup.cfg*) in
-both ``/etc/shup/shup.cfg`` and ``~/.config/shup/shup.cfg`` in that
+both your pip3 installation folder and ``~/.config/shup/shup.cfg`` in that
 order. Please note that the latter supersede the former as the arguments
 do with configuration files. A default target should be specified in one
 of the configuration files in order to use shup withou the rule argument
