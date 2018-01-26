@@ -80,6 +80,8 @@ def get_ssh_client(cfg: Config) -> SSHClient:
     try:
         passwd = cfg.get_str('ssh_passwd')
         pass_from_file = True
+        if (not len(passwd)) or (passwd == "''" or passwd == '""'):
+            passwd = None
     except NoOptionError:
         passwd = cfg.askPasswd()
 
@@ -88,7 +90,7 @@ def get_ssh_client(cfg: Config) -> SSHClient:
             cfg.get_str('ssh_host'),
             cfg.get_int('ssh_port'),
             cfg.get_str('ssh_user'),
-            passwd,
+            password = passwd,
             timeout=cfg.get_int('ssh_timeout'))
     except paramiko.AuthenticationException as e:
         if pass_from_file:
