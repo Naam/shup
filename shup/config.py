@@ -25,8 +25,6 @@ class Config(ConfigParser):
                 'ssh_user': user,
                 'file_ttl': '1d',
                 'file_perm': '0644',
-                'file_group': user,
-                'file_user': user,
                 'rand_len': '2',
                 }})
 

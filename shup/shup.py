@@ -218,12 +218,21 @@ def execCmd(ssh_client: SSHClient, cmd: str) -> ChannelFile:
 
 def set_file_owner(cfg: Config, sftp: sftp_client, ssh_client: SSHClient,
                    final_path: str) -> None:
-    stdin, stdout, stderr = execCmd(ssh_client, "id -g {}".format(
-        cfg.get_str('file_group')))
+    group = None
+    user = None
+    if cfg.exists('file_group'):
+        group = cfg.get_str('file_group')
+    else:
+        group = cfg.get_str('ssh_user')
+    if cfg.exists('file_user'):
+        user = cfg.get_str('file_user')
+    else:
+        user = cfg.get_str('ssh_user')
+
+    stdin, stdout, stderr = execCmd(ssh_client, "id -g {}".format(group))
     stdout = stdout.read()
     gid = int(stdout)
-    stdin, stdout, stderr = execCmd(ssh_client, "id -u {}".format(
-        cfg.get_str('file_user')))
+    stdin, stdout, stderr = execCmd(ssh_client, "id -u {}".format(user))
     stdout = stdout.read()
     uid = int(stdout)
     log('Set file owner to {}:{}'.format(uid, gid))
