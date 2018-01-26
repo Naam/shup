@@ -85,12 +85,17 @@ def get_ssh_client(cfg: Config) -> SSHClient:
     except NoOptionError:
         passwd = cfg.askPasswd()
 
+    key_file = None
+    if cfg.exists('ssh_keyfile'):
+        key_file=os.path.expanduser(cfg.get_str('ssh_keyfile'))
+
     try:
         s.connect(
             cfg.get_str('ssh_host'),
             cfg.get_int('ssh_port'),
             cfg.get_str('ssh_user'),
             password = passwd,
+            key_filename = key_file,
             timeout=cfg.get_int('ssh_timeout'))
     except paramiko.AuthenticationException as e:
         if pass_from_file:

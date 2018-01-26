@@ -52,6 +52,7 @@ situation:
 
     [example_static]
     ssh_host = example.com
+    ssh_keyfile = ~/.ssh/id_rsa
     file_path = /www/static
     file_ttl = 1w
 
